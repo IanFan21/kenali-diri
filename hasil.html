@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Hasil publik | Kenali Diri</title>
+  <meta name="description" content="Hasil tes gaya belajar dan kepribadian tanpa nama siswa. Cari hasilmu dengan kode.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="lewati" href="#isi">Lewati ke isi</a>
+
+  <header class="nav">
+    <div class="container nav-in">
+      <a class="merek" href="index.html" aria-label="Kenali Diri, beranda"><span>Kenali Diri</span></a>
+      <nav aria-label="Utama">
+        <a href="tes.html?jenis=gaya-belajar">Gaya belajar</a>
+        <a href="tes.html?jenis=kepribadian">Kepribadian</a>
+        <a href="hasil.html" aria-current="page">Hasil publik</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="isi" class="container app">
+    <div class="tes-kepala">
+      <h1>Hasil publik.</h1>
+      <p class="muted">Daftar ini tidak menampilkan nama siswa. Setiap hasil dikenali lewat kode.</p>
+    </div>
+
+    <noscript><p class="status status--gagal">Halaman ini membutuhkan JavaScript untuk memuat daftar hasil.</p></noscript>
+
+    <form class="alat" id="alat" onsubmit="return false">
+      <div class="isian isian--sempit">
+        <label for="f-jenis">Jenis tes</label>
+        <select id="f-jenis">
+          <option value="gaya_belajar">Gaya belajar</option>
+          <option value="kepribadian">Kepribadian</option>
+        </select>
+      </div>
+      <div class="isian isian--sempit">
+        <label for="f-kelas">Kelas</label>
+        <select id="f-kelas"><option value="">Semua kelas</option></select>
+      </div>
+      <div class="isian">
+        <label for="f-kode">Kode hasil</label>
+        <input id="f-kode" type="search" maxlength="6" autocomplete="off" autocapitalize="characters" spellcheck="false">
+      </div>
+    </form>
+
+    <p class="status" id="status" role="status" aria-live="polite">Memuat hasil…</p>
+
+    <section class="ringkasan" id="ringkasan" hidden aria-labelledby="h-ringkasan">
+      <h2 id="h-ringkasan">Ringkasan</h2>
+      <p class="muted" id="ringkasan-ket"></p>
+      <div class="batang-daftar" id="ringkasan-batang"></div>
+    </section>
+
+    <section id="daftar" aria-labelledby="h-daftar">
+      <h2 id="h-daftar">Daftar hasil</h2>
+      <div class="tabel-wrap">
+        <table>
+          <thead>
+            <tr><th scope="col">Kode</th><th scope="col">Kelas</th><th scope="col">Hasil</th><th scope="col">Tanggal</th><th scope="col"><span class="sr-only">Rincian</span></th></tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="rincian" class="cut" aria-labelledby="rincian-judul">
+    <div class="isi-dialog">
+      <h2 id="rincian-judul"></h2>
+      <p class="muted" id="rincian-ket"></p>
+      <div class="batang-daftar" id="rincian-batang"></div>
+      <form method="dialog" class="aksi"><button class="btn btn--garis" autofocus>Tutup</button></form>
+    </div>
+  </dialog>
+
+  <footer class="footer">
+    <div class="container footer-in">
+      <a class="merek" href="index.html" aria-label="Kenali Diri, beranda"><span>Kenali Diri</span></a>
+      <nav class="footer-kolom" aria-label="Tes">
+        <h2>Tes</h2>
+        <ul>
+          <li><a href="tes.html?jenis=gaya-belajar">Gaya belajar</a></li>
+          <li><a href="tes.html?jenis=kepribadian">Kepribadian</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-kolom" aria-label="Hasil">
+        <h2>Hasil</h2>
+        <ul>
+          <li><a href="hasil.html">Hasil publik</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-kolom" aria-label="Guru">
+        <h2>Guru</h2>
+        <ul>
+          <li><a href="admin.html">Masuk admin</a></li>
+        </ul>
+      </nav>
+      <p class="footer-catatan"><span id="nama-sekolah" hidden></span> Tes ini alat bantu mengenal diri, bukan alat diagnosis psikologis.</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js" defer></script>
+  <script src="js/soal.js" defer></script>
+  <script src="js/util.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/hasil.js" defer></script>
+</body>
+</html>

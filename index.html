@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Kenali Diri: tes gaya belajar dan kepribadian untuk siswa</title>
+  <meta name="description" content="Dua tes singkat untuk siswa: tes gaya belajar dan inventori kepribadian. Nama siswa tidak ditampilkan di halaman hasil publik.">
+  <link rel="stylesheet" href="css/style.css">
+  <script>document.documentElement.classList.add('js');</script>
+</head>
+<body>
+  <a class="lewati" href="#isi">Lewati ke isi</a>
+
+  <header class="nav">
+    <div class="container nav-in">
+      <a class="merek" href="index.html" aria-label="Kenali Diri, beranda"><span>Kenali Diri</span></a>
+      <nav aria-label="Utama">
+        <a href="tes.html?jenis=gaya-belajar">Gaya belajar</a>
+        <a href="tes.html?jenis=kepribadian">Kepribadian</a>
+        <a href="hasil.html">Hasil publik</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="isi">
+    <section class="hero" aria-labelledby="h-hero">
+      <canvas class="medan" id="medan" aria-hidden="true"></canvas>
+      <div class="container hero-in">
+        <h1 id="h-hero">Kenali cara belajar dan dirimu.</h1>
+        <p class="lead">Dua tes singkat untuk siswa, dengan hasil yang bisa langsung dibaca.</p>
+        <div class="aksi">
+          <a class="btn" href="tes.html?jenis=gaya-belajar">Tes gaya belajar</a>
+          <a class="btn btn--garis" href="tes.html?jenis=kepribadian">Tes kepribadian</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="bagian" aria-labelledby="h-coba">
+      <div class="container coba">
+        <div class="coba-kepala">
+          <h2 id="h-coba">Coba satu soal dulu.</h2>
+          <p class="lead">Jawabanmu langsung dihitung di sini. Tidak ada yang dikirim.</p>
+          <div class="seg" role="tablist" aria-label="Jenis tes" id="seg-coba" hidden>
+            <button type="button" role="tab" id="t-gaya" aria-selected="true" aria-controls="p-gaya">Gaya belajar</button>
+            <button type="button" role="tab" id="t-kep" aria-selected="false" aria-controls="p-kep" tabindex="-1">Kepribadian</button>
+          </div>
+        </div>
+
+        <div class="coba-badan">
+          <section class="coba-panel" id="p-gaya" role="tabpanel" aria-labelledby="t-gaya">
+            <form onsubmit="return false">
+              <fieldset>
+                <legend>Untuk mengingat nomor telepon, aku biasanya…</legend>
+                <div class="opsi-daftar">
+                  <label class="opsi"><input type="radio" name="cg" value="V"><span class="opsi-teks">membayangkan angka-angkanya tertulis</span></label>
+                  <label class="opsi"><input type="radio" name="cg" value="A"><span class="opsi-teks">mengucapkannya berulang-ulang</span></label>
+                  <label class="opsi"><input type="radio" name="cg" value="K"><span class="opsi-teks">menuliskan atau mengetikkannya beberapa kali</span></label>
+                </div>
+              </fieldset>
+            </form>
+            <div class="hitung" role="status" aria-live="polite" id="hitung-gaya">
+              <span class="hitung-label">Dihitung sebagai</span>
+              <strong class="hitung-nilai">Pilih satu jawaban.</strong>
+              <span class="hitung-ket">Setiap jawaban menambah satu poin untuk salah satu gaya. Gaya dengan poin terbanyak dari 30 soal menjadi hasilmu.</span>
+            </div>
+          </section>
+
+          <section class="coba-panel" id="p-kep" role="tabpanel" aria-labelledby="t-kep">
+            <form onsubmit="return false">
+              <fieldset>
+                <legend>Aku jarang berbicara kecuali diminta.</legend>
+                <div class="opsi-skala-daftar">
+                  <label class="opsi opsi--skala"><input type="radio" name="ck" value="1"><span class="opsi-teks">Sangat tidak sesuai</span></label>
+                  <label class="opsi opsi--skala"><input type="radio" name="ck" value="2"><span class="opsi-teks">Tidak sesuai</span></label>
+                  <label class="opsi opsi--skala"><input type="radio" name="ck" value="3"><span class="opsi-teks">Netral</span></label>
+                  <label class="opsi opsi--skala"><input type="radio" name="ck" value="4"><span class="opsi-teks">Sesuai</span></label>
+                  <label class="opsi opsi--skala"><input type="radio" name="ck" value="5"><span class="opsi-teks">Sangat sesuai</span></label>
+                </div>
+              </fieldset>
+            </form>
+            <div class="hitung" role="status" aria-live="polite" id="hitung-kep">
+              <span class="hitung-label">Dihitung sebagai</span>
+              <strong class="hitung-nilai">Pilih satu jawaban.</strong>
+              <span class="hitung-ket">Skalanya 1 sampai 5. Pernyataan yang dibalik dihitung sebagai 6 dikurangi jawabanmu.</span>
+            </div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="bagian bagian--pita" aria-labelledby="h-hasil">
+      <div class="container">
+        <h2 id="h-hasil">Tiga gaya, lima sisi diri.</h2>
+        <div class="dua-daftar">
+          <div class="daftar-hasil cut">
+            <h3>Gaya belajar</h3>
+            <dl>
+              <div class="baris"><dt>Visual</dt><dd>Lewat gambar dan warna.</dd></div>
+              <div class="baris"><dt>Auditori</dt><dd>Lewat mendengar dan bicara.</dd></div>
+              <div class="baris"><dt>Kinestetik</dt><dd>Lewat praktik dan gerak.</dd></div>
+            </dl>
+            <div class="aksi"><a class="btn btn--garis" href="tes.html?jenis=gaya-belajar">Mulai, 30 soal</a></div>
+          </div>
+          <div class="daftar-hasil cut">
+            <h3>Kepribadian</h3>
+            <dl>
+              <div class="baris"><dt>Ekstraversi</dt><dd>Energi dari bertemu orang.</dd></div>
+              <div class="baris"><dt>Keramahan</dt><dd>Peduli, mudah bekerja sama.</dd></div>
+              <div class="baris"><dt>Kehati-hatian</dt><dd>Teratur dan tekun.</dd></div>
+              <div class="baris"><dt>Kestabilan emosi</dt><dd>Tenang saat tertekan.</dd></div>
+              <div class="baris"><dt>Keterbukaan</dt><dd>Suka hal baru.</dd></div>
+            </dl>
+            <div class="aksi"><a class="btn btn--garis" href="tes.html?jenis=kepribadian">Mulai, 30 pernyataan</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bagian privasi" aria-labelledby="h-privasi">
+      <div class="container">
+        <div class="privasi-kepala">
+          <h2 id="h-privasi">Namamu hanya dilihat gurumu.</h2>
+          <p class="lead">Halaman hasil publik tidak menampilkan nama. Hasilmu dikenali lewat kode.</p>
+        </div>
+        <div class="tabel-wrap">
+          <table>
+            <thead>
+              <tr><th scope="col">Siapa</th><th scope="col">Yang terlihat</th><th scope="col">Yang tidak terlihat</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Halaman hasil publik</td><td class="rinci">Kode, kelas, jenis tes, skor, hasil, tanggal</td><td class="rinci">Nama</td></tr>
+              <tr><td>Siswa saat mengirim</td><td class="rinci">Hanya bisa menambah hasilnya sendiri</td><td class="rinci">Isi tabel hasil</td></tr>
+              <tr><td>Admin yang sudah masuk</td><td class="rinci">Semua, termasuk nama. Bisa mengunduh dan menghapus.</td><td class="rinci">Tidak ada</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="catatan-tabel">Aturan ini berlaku setelah database terpasang sesuai README.</p>
+      </div>
+    </section>
+
+    <section class="bagian bagian--pita" id="cari" aria-labelledby="h-cari">
+      <div class="container cari">
+        <div class="cari-teks">
+          <h2 id="h-cari">Cari hasilmu dengan kode.</h2>
+          <p class="lead">Kode enam karakter muncul setelah kamu selesai tes. Catat atau foto kodenya.</p>
+        </div>
+        <form action="hasil.html" method="get">
+          <div class="baris-isian">
+            <div class="isian">
+              <label for="kode">Kode hasil</label>
+              <input id="kode" name="kode" type="text" maxlength="6" autocomplete="off" autocapitalize="characters" spellcheck="false" required pattern="[A-HJ-NP-Za-hj-np-z2-9]{6}" title="Enam huruf atau angka" placeholder="Contoh: K7M2QX">
+            </div>
+            <button class="btn" type="submit">Cari hasil</button>
+          </div>
+          <p class="kecil muted"><a href="hasil.html">Lihat semua hasil publik</a></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-in">
+      <a class="merek" href="index.html" aria-label="Kenali Diri, beranda"><span>Kenali Diri</span></a>
+      <nav class="footer-kolom" aria-label="Tes">
+        <h2>Tes</h2>
+        <ul>
+          <li><a href="tes.html?jenis=gaya-belajar">Gaya belajar</a></li>
+          <li><a href="tes.html?jenis=kepribadian">Kepribadian</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-kolom" aria-label="Hasil">
+        <h2>Hasil</h2>
+        <ul>
+          <li><a href="hasil.html">Hasil publik</a></li>
+          <li><a href="#cari">Cari dengan kode</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-kolom" aria-label="Guru">
+        <h2>Guru</h2>
+        <ul>
+          <li><a href="admin.html">Masuk admin</a></li>
+        </ul>
+      </nav>
+      <p class="footer-catatan"><span id="nama-sekolah" hidden></span> Tes ini alat bantu mengenal diri, bukan alat diagnosis psikologis.</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js" defer></script>
+  <script src="js/soal.js" defer></script>
+  <script src="js/util.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/medan.js" defer></script>
+  <script src="js/coba.js" defer></script>
+</body>
+</html>

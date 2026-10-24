@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="robots" content="noindex">
+  <title>Admin | Kenali Diri</title>
+  <meta name="description" content="Panel guru: lihat nama dan hasil siswa, unduh CSV, hapus hasil. Perlu masuk.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="lewati" href="#isi">Lewati ke isi</a>
+
+  <header class="nav">
+    <div class="container nav-in">
+      <a class="merek" href="index.html" aria-label="Kenali Diri, beranda"><span>Kenali Diri</span></a>
+      <nav aria-label="Utama">
+        <a href="tes.html?jenis=gaya-belajar">Gaya belajar</a>
+        <a href="tes.html?jenis=kepribadian">Kepribadian</a>
+        <a href="hasil.html">Hasil publik</a>
+        <a href="admin.html" aria-current="page">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="isi" class="container app">
+    <noscript><p class="status status--gagal">Halaman admin membutuhkan JavaScript.</p></noscript>
+
+    <p class="status" id="memuat" role="status">Memeriksa sesi…</p>
+
+    <!-- Belum masuk -->
+    <section id="v-masuk" hidden aria-labelledby="h-masuk">
+      <div class="tes-kepala">
+        <h1 id="h-masuk" tabindex="-1">Masuk admin.</h1>
+        <p class="muted">Hanya akun admin yang bisa melihat nama siswa.</p>
+      </div>
+      <form id="form-masuk" class="masuk-form" novalidate>
+        <div class="isian">
+          <label for="email">Email</label>
+          <input id="email" type="email" autocomplete="username" required>
+        </div>
+        <div class="isian">
+          <label for="sandi">Kata sandi</label>
+          <input id="sandi" type="password" autocomplete="current-password" required>
+        </div>
+        <p class="galat" id="galat-masuk" role="alert"></p>
+        <div class="aksi"><button class="btn" type="submit" id="btn-masuk">Masuk</button></div>
+      </form>
+    </section>
+
+    <!-- Sudah masuk -->
+    <section id="v-admin" hidden aria-labelledby="h-admin">
+      <div class="tes-kepala">
+        <h1 id="h-admin" tabindex="-1">Nama dan hasil siswa.</h1>
+        <p class="muted" id="admin-ket"></p>
+      </div>
+
+      <form class="alat" id="alat" onsubmit="return false">
+        <div class="isian isian--sempit">
+          <label for="f-jenis">Jenis tes</label>
+          <select id="f-jenis">
+            <option value="">Semua jenis</option>
+            <option value="gaya_belajar">Gaya belajar</option>
+            <option value="kepribadian">Kepribadian</option>
+          </select>
+        </div>
+        <div class="isian isian--sempit">
+          <label for="f-kelas">Kelas</label>
+          <select id="f-kelas"><option value="">Semua kelas</option></select>
+        </div>
+        <div class="isian">
+          <label for="f-cari">Cari nama atau kode</label>
+          <input id="f-cari" type="search" autocomplete="off">
+        </div>
+        <div class="baris-aksi">
+          <button class="btn btn--garis" type="button" id="btn-csv">Unduh CSV</button>
+          <button class="btn btn--garis" type="button" id="btn-keluar">Keluar</button>
+        </div>
+      </form>
+
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+
+      <div class="tabel-wrap" id="tabel-wrap" hidden>
+        <table>
+          <thead>
+            <tr><th scope="col">Nama</th><th scope="col">Kelas</th><th scope="col">Jenis</th><th scope="col">Hasil</th><th scope="col">Kode</th><th scope="col">Tanggal</th><th scope="col"><span class="sr-only">Tindakan</span></th></tr>
+          </thead>
+          <tbody id="tbody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="rincian" class="cut" aria-labelledby="rincian-judul">
+    <div class="isi-dialog">
+      <h2 id="rincian-judul"></h2>
+      <p class="muted" id="rincian-ket"></p>
+      <div class="batang-daftar" id="rincian-batang"></div>
+      <form method="dialog" class="aksi"><button class="btn btn--garis" autofocus>Tutup</button></form>
+    </div>
+  </dialog>
+
+  <dialog id="hapus" class="cut" aria-labelledby="hapus-judul">
+    <div class="isi-dialog">
+      <h2 id="hapus-judul">Hapus hasil ini?</h2>
+      <p id="hapus-ket"></p>
+      <p class="kecil muted">Penghapusan tidak bisa dibatalkan.</p>
+      <p class="galat" id="galat-hapus" role="alert"></p>
+      <div class="aksi">
+        <button class="btn btn--bahaya" type="button" id="btn-hapus-ya">Hapus</button>
+        <button class="btn btn--garis" type="button" id="btn-hapus-tidak">Batal</button>
+      </div>
+    </div>
+  </dialog>
+
+  <footer class="footer">
+    <div class="container footer-in">
+      <a class="merek" href="index.html" aria-label="Kenali Diri, beranda"><span>Kenali Diri</span></a>
+      <nav class="footer-kolom" aria-label="Tes">
+        <h2>Tes</h2>
+        <ul>
+          <li><a href="tes.html?jenis=gaya-belajar">Gaya belajar</a></li>
+          <li><a href="tes.html?jenis=kepribadian">Kepribadian</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-kolom" aria-label="Hasil">
+        <h2>Hasil</h2>
+        <ul>
+          <li><a href="hasil.html">Hasil publik</a></li>
+        </ul>
+      </nav>
+      <p class="footer-catatan"><span id="nama-sekolah" hidden></span> Tes ini alat bantu mengenal diri, bukan alat diagnosis psikologis.</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js" defer></script>
+  <script src="js/soal.js" defer></script>
+  <script src="js/util.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/admin.js" defer></script>
+</body>
+</html>

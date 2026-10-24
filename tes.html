@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Ikuti tes | Kenali Diri</title>
+  <meta name="description" content="Isi tes gaya belajar atau inventori kepribadian, lalu baca hasilmu dan catat kode hasilnya.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <a class="lewati" href="#isi">Lewati ke isi</a>
+
+  <header class="nav">
+    <div class="container nav-in">
+      <a class="merek" href="index.html" aria-label="Kenali Diri, beranda"><span>Kenali Diri</span></a>
+      <nav aria-label="Utama">
+        <a href="tes.html?jenis=gaya-belajar" id="nav-gaya">Gaya belajar</a>
+        <a href="tes.html?jenis=kepribadian" id="nav-kep">Kepribadian</a>
+        <a href="hasil.html">Hasil publik</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="isi" class="container app">
+    <noscript><p class="status status--gagal">Tes ini membutuhkan JavaScript. Aktifkan JavaScript di browser, lalu muat ulang halaman.</p></noscript>
+
+    <!-- Tampil jika alamat belum menyebut jenis tes -->
+    <section id="v-pilih" aria-labelledby="h-pilih">
+      <div class="tes-kepala">
+        <h1 id="h-pilih">Pilih satu dari dua tes.</h1>
+      </div>
+      <div class="pilih-tes">
+        <div class="cut">
+          <p class="angka">30<span>soal</span></p>
+          <h2>Gaya belajar</h2>
+          <p>Pilih satu dari tiga pernyataan yang paling mirip denganmu.</p>
+          <div class="aksi"><a class="btn btn--garis" href="tes.html?jenis=gaya-belajar">Mulai</a></div>
+        </div>
+        <div class="cut">
+          <p class="angka">30<span>pernyataan</span></p>
+          <h2>Inventori kepribadian</h2>
+          <p>Nilai seberapa sesuai tiap pernyataan denganmu.</p>
+          <div class="aksi"><a class="btn btn--garis" href="tes.html?jenis=kepribadian">Mulai</a></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 1. Data diri -->
+    <section id="v-identitas" hidden aria-labelledby="h-identitas">
+      <div class="tes-kepala">
+        <h1 id="h-identitas" tabindex="-1"></h1>
+        <p id="petunjuk" class="muted"></p>
+      </div>
+      <form id="form-identitas" class="panel" novalidate>
+        <div class="isian">
+          <label for="nama">Nama lengkap</label>
+          <input id="nama" name="nama" type="text" maxlength="80" autocomplete="name" required>
+          <span class="bantu">Nama hanya terlihat oleh admin. Di halaman publik kamu dikenali lewat kode hasil.</span>
+          <span class="galat" id="galat-nama" role="alert"></span>
+        </div>
+        <div class="isian">
+          <label for="kelas">Kelas</label>
+          <input id="kelas" name="kelas" type="text" maxlength="30" autocomplete="off" required>
+          <span class="bantu">Kelas ikut tampil di halaman publik.</span>
+          <span class="galat" id="galat-kelas" role="alert"></span>
+        </div>
+        <div class="aksi"><button class="btn" type="submit">Mulai tes</button></div>
+      </form>
+    </section>
+
+    <!-- 2. Soal -->
+    <section id="v-soal" hidden aria-labelledby="h-soal">
+      <div class="tes-kepala">
+        <h1 id="h-soal" tabindex="-1"></h1>
+        <div class="progres-baris">
+          <div class="progres" aria-hidden="true"><span id="progres-isi"></span></div>
+          <p class="kecil muted" id="progres-teks" aria-live="polite"></p>
+        </div>
+      </div>
+      <form id="form-soal" novalidate>
+        <div id="soal-daftar" class="soal-daftar"></div>
+        <p class="galat" id="galat-soal" role="alert"></p>
+        <div class="navigasi-soal">
+          <button class="btn btn--garis" type="button" id="btn-kembali">Kembali</button>
+          <button class="btn" type="submit" id="btn-lanjut">Lanjut</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- 3. Hasil -->
+    <section id="v-hasil" hidden aria-labelledby="h-hasil">
+      <div class="hasil-kepala">
+        <h1 id="h-hasil" tabindex="-1">Hasilmu</h1>
+        <p class="lead" id="hasil-ringkas"></p>
+      </div>
+      <div class="hasil-badan">
+        <div class="hasil-kepala">
+          <h2>Kode hasilmu</h2>
+          <div class="kode-hasil" id="hasil-kode"></div>
+          <p class="kecil muted">Catat atau foto kode ini. Dengan kode, kamu bisa mencari hasilmu di halaman hasil publik.</p>
+          <p class="status" id="status-simpan" role="status" aria-live="polite"></p>
+          <div class="aksi tidak-dicetak">
+            <button class="btn btn--garis" type="button" id="btn-simpan-ulang" hidden>Coba simpan lagi</button>
+            <button class="btn btn--garis" type="button" id="btn-salin">Salin kode</button>
+          </div>
+        </div>
+        <div class="hasil-kepala">
+          <h2>Skormu</h2>
+          <div class="batang-daftar" id="hasil-batang"></div>
+        </div>
+        <div class="uraian" id="hasil-uraian"></div>
+        <p class="kecil muted">Hasil ini gambaran, bukan label tetap dan bukan diagnosis psikologis. Kamu bisa berubah dan berkembang.</p>
+        <div class="aksi tidak-dicetak">
+          <button class="btn" type="button" id="btn-cetak">Cetak hasil</button>
+          <a class="btn btn--garis" id="tes-lain" href="tes.html">Ikuti tes lainnya</a>
+          <a class="btn btn--garis" id="lihat-publik" href="hasil.html">Lihat hasil publik</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-in">
+      <a class="merek" href="index.html" aria-label="Kenali Diri, beranda"><span>Kenali Diri</span></a>
+      <nav class="footer-kolom" aria-label="Tes">
+        <h2>Tes</h2>
+        <ul>
+          <li><a href="tes.html?jenis=gaya-belajar">Gaya belajar</a></li>
+          <li><a href="tes.html?jenis=kepribadian">Kepribadian</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-kolom" aria-label="Hasil">
+        <h2>Hasil</h2>
+        <ul>
+          <li><a href="hasil.html">Hasil publik</a></li>
+        </ul>
+      </nav>
+      <nav class="footer-kolom" aria-label="Guru">
+        <h2>Guru</h2>
+        <ul>
+          <li><a href="admin.html">Masuk admin</a></li>
+        </ul>
+      </nav>
+      <p class="footer-catatan"><span id="nama-sekolah" hidden></span> Tes ini alat bantu mengenal diri, bukan alat diagnosis psikologis.</p>
+    </div>
+  </footer>
+
+  <script src="js/config.js" defer></script>
+  <script src="js/soal.js" defer></script>
+  <script src="js/util.js" defer></script>
+  <script src="js/data.js" defer></script>
+  <script src="js/tes.js" defer></script>
+</body>
+</html>
