@@ -1,5 +1,8 @@
 # Kenali Diri
 
+🌐 **Coba langsung:** https://ianfan21.github.io/kenali-diri/ — situs sudah tayang dan login admin aktif (Supabase).
+📦 **Mau pasang sendiri?** Ikuti bagian *Pasang* di bawah (sekitar 15 menit): buat proyek Supabase, jalankan skema, daftarkan admin, isi `js/config.js`, lalu aktifkan GitHub Pages.
+
 Situs statis berisi dua tes untuk siswa: **tes gaya belajar** (visual, auditori, kinestetik) dan **inventori kepribadian** (lima dimensi: ekstraversi, keramahan, kehati-hatian, kestabilan emosi, keterbukaan). Cocok dihosting di GitHub Pages.
 
 ## Cara kerja privasi
